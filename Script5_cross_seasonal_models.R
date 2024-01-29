@@ -146,7 +146,7 @@ nb <- 2500
 
 # Call JAGS from R (BRT )
 Sys.time()
-m <- jags(jags.data, inits, parameters, "cross_seasonal.jags", parallel = T, 
+m5 <- jags(jags.data, inits, parameters, "cross_seasonal.jags", parallel = T, 
           n.chains = nc, n.thin = nt, n.iter = ni, n.burnin = nb)
 Sys.time()
 
@@ -167,27 +167,27 @@ greens <- colorRampPalette(c('lightgreen','forestgreen'))
 
 par(mar = c(5.1,5.1,2.1,2.1), family = 'serif')
 library(vioplot)
-vioplot(m$sims.list$phi, names = seq(start,end), col = greens(n.years),
+vioplot(m5$sims.list$phi, names = seq(start,end), col = greens(n.years),
         las = 1, ylab = expression(Summer~survival~(phi)), cex.lab = 2,
         xlab = 'Year', drawRect = F)
 
-vioplot(m$sims.list$omega, names = seq(start,end-1), col = greens(n.years),
+vioplot(m5$sims.list$omega, names = seq(start,end-1), col = greens(n.years),
         las = 1, ylab = expression(Winter~survival~without~harvest~(omega)), cex.lab = 2,
         xlab = 'Year', drawRect = F)
 
-vioplot(m$sims.list$kappa, names = seq(start,end), col = greens(n.years),
+vioplot(m5$sims.list$kappa, names = seq(start,end), col = greens(n.years),
         las = 1, ylab = expression(Hunting~mortality~probability~(h)), cex.lab = 2,
         xlab = 'Year', drawRect = F)
 
-vioplot(m$sims.list$h, names = seq(start,end), col = greens(n.years),
+vioplot(m5$sims.list$h, names = seq(start,end), col = greens(n.years),
         las = 1, ylab = expression(Harvest~probability~(h)), cex.lab = 2,
         xlab = 'Year', drawRect = F)
 
-vioplot(m$sims.list$rho, names = seq(start,end), col = greens(n.years),
+vioplot(m5$sims.list$rho, names = seq(start,end), col = greens(n.years),
         las = 1, ylab = expression(Band~reporting~probability~(rho)), cex.lab = 2,
         xlab = 'Year', drawRect = F)
 
-vioplot(m$sims.list$S, names = seq(start,end-1), col = greens(n.years),
+vioplot(m5$sims.list$S, names = seq(start,end-1), col = greens(n.years),
         las = 1, ylab = expression(Survival~(S)), cex.lab = 2,
         xlab = 'Year', drawRect = F)
 
@@ -197,11 +197,11 @@ vioplot(m$sims.list$S, names = seq(start,end-1), col = greens(n.years),
 # Questions:
 # 
 # 1a) Is annual survival (S) more closely associated with summer survival (phi)
-#    or hunting mortality (kappy)? Why?
+#    or hunting mortality (kappa)? Why?
 #
-plot(m$q50$S ~ m$q50$phi[2:n.years], pch = 21, bg = greens(n.years-1),
+plot(m5$q50$S ~ m5$q50$phi[2:n.years], pch = 21, bg = greens(n.years-1),
      ylab = 'Annual survival', xlab = 'Summer survival', cex = 1.5, cex.lab = 1.5)
-plot(m$q50$S ~ m$q50$kappa[1:(n.years-1)], pch = 21, bg = greens(n.years-1),
+plot(m5$q50$S ~ m5$q50$kappa[1:(n.years-1)], pch = 21, bg = greens(n.years-1),
      ylab = 'Annual survival', xlab = 'Hunting mortality', cex = 1.5, cex.lab = 1.5)
 # 
 # 1b) Why? See Hoekman et al. (2002; JWM) and Koons et al. (2016; Ecology Letters)

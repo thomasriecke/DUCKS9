@@ -171,7 +171,7 @@ nb <- 2500
 
 # Call JAGS from R (BRT )
 Sys.time()
-m <- jags(jags.data, inits, parameters, "cross_seasonal_Lincoln.jags", parallel = T, 
+m6 <- jags(jags.data, inits, parameters, "cross_seasonal_Lincoln.jags", parallel = T, 
           n.chains = nc, n.thin = nt, n.iter = ni, n.burnin = nb)
 Sys.time()
 
@@ -179,16 +179,16 @@ Sys.time()
 
 
 greens <- colorRampPalette(c('lightgreen','darkgreen'))
-plot(m$q50$N[,1] ~ seq(start,end), ylim = c(2000000,12000000),
+plot(m6$q50$N[,1] ~ seq(start,end), ylim = c(2000000,12000000),
      ylab = 'Abundance (N)', xlab = 'Year', cex.lab = 2)
-arrows(seq(start,end), m$q2.5$N[,1], seq(start,end), m$q97.5$N[,1],
+arrows(seq(start,end), m6$q2.5$N[,1], seq(start,end), m6$q97.5$N[,1],
        length = 0, lty = 1)
-points(m$q50$N[,1] ~ seq(start,end), cex = 2, type = 'b',
+points(m6$q50$N[,1] ~ seq(start,end), cex = 2, type = 'b',
        pch = 21, bg = greens(n.years))
 
-arrows(seq(start+0.25,end+0.25), m$q2.5$N[,2], seq(start+0.25,end+0.25), m$q97.5$N[,2],
+arrows(seq(start+0.25,end+0.25), m6$q2.5$N[,2], seq(start+0.25,end+0.25), m6$q97.5$N[,2],
        length = 0, lty = 1)
-points(m$q50$N[,2] ~ seq(start+0.25,end+0.25), cex = 2, type = 'b',
+points(m6$q50$N[,2] ~ seq(start+0.25,end+0.25), cex = 2, type = 'b',
        pch = 22, bg = greens(n.years))
 
 reds <- colorRampPalette(c('orange','red'))
@@ -220,6 +220,8 @@ legend('topright', legend = c('Lincoln spring', 'Lincoln fall', 'WBPHS'),
 #    Do Lincoln estimates and WBPHS estimates generally agree?
 #    Given the assumptions of Lincoln estimates (see Alisauskas papers)
 #    what might drive divergence in these two estimates of abundance
+#
+# 4) Why are spring estimates of abundance greater than fall estimates?
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 

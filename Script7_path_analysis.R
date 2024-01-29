@@ -170,7 +170,7 @@ nb <- 2500
 
 # Call JAGS from R (BRT )
 Sys.time()
-m <- jags(jags.data, inits, parameters, "path_analysis_hunting.jags", parallel = T, 
+m7 <- jags(jags.data, inits, parameters, "path_analysis_hunting.jags", parallel = T, 
           n.chains = nc, n.thin = nt, n.iter = ni, n.burnin = nb)
 Sys.time()
 
@@ -178,12 +178,12 @@ Sys.time()
 # plot estimates of hunting mortality against abundance (N) and
 # duck stamp sales (D)
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-plot(m$q50$kappa ~ N, ylab = expression(Hunting~mortality~probability~(kappa)),
+plot(m7$q50$kappa ~ N, ylab = expression(Hunting~mortality~probability~(kappa)),
      xlab = 'WBPHS N (millions)', pch = 21, bg = greens(n.years), cex = 2)
-plot(m$q50$kappa ~ D, ylab = expression(Hunting~mortality~probability~(kappa)),
+plot(m7$q50$kappa ~ D, ylab = expression(Hunting~mortality~probability~(kappa)),
      xlab = 'Duck stamp sales', pch = 21, bg = greens(n.years), cex = 2)
 
-vioplot(m$sims.list$beta.kappa[,1], m$sims.list$beta.kappa[,2], m$sims.list$beta.D,
+vioplot(m7$sims.list$beta.kappa[,1], m7$sims.list$beta.kappa[,2], m7$sims.list$beta.D,
         drawRect = FALSE, col = 'forestgreen',
         names = c(expression(beta[kappa*'1']),expression(beta[kappa*'2']),expression(beta[D])))
 
@@ -198,9 +198,9 @@ res <- 100
 x <- seq(-2,2,length.out = res)
 
 # generate predicted values given uncertainty in posterior distributions
-pred.kappa <- matrix(NA, length(m$sims.list$alpha.kappa), res)
+pred.kappa <- matrix(NA, length(m7$sims.list$alpha.kappa), res)
 for (j in 1:res){
-  pred.kappa[,j] <- plogis(m$sims.list$alpha.kappa + m$sims.list$beta.kappa[,2] * x[j])
+  pred.kappa[,j] <- plogis(m7$sims.list$alpha.kappa + m7$sims.list$beta.kappa[,2] * x[j])
 }
 
 # generate 90% quantiles of predictions
@@ -234,11 +234,11 @@ lines(q.pred[,3] ~ seq(1,100), col = 'white', lwd = 2, lty = 3)
 # make a similar figure using estimates and raw data
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 greens <- colorRampPalette(c('lightgreen','forestgreen','darkgreen'))
-plot(m$q50$kappa ~ D, ylab = expression(Hunting~mortality~probability~(kappa)),
+plot(m7$q50$kappa ~ D, ylab = expression(Hunting~mortality~probability~(kappa)),
      xlab = 'Duck stamp sales', pch = 21, cex = 1, cex.lab = 1.5,
      ylim = c(0,0.15))
-arrows(D, m$q2.5$kappa, D, m$q97.5$kappa, length = 0, lty = 2, col = greens(n.years))
-points(m$q50$kappa ~ D, cex = 2, bg = greens(n.years), pch = 21)
+arrows(D, m7$q2.5$kappa, D, m7$q97.5$kappa, length = 0, lty = 2, col = greens(n.years))
+points(m7$q50$kappa ~ D, cex = 2, bg = greens(n.years), pch = 21)
 
 
 
