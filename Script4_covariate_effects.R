@@ -365,11 +365,12 @@ points(S, pch = 19, type = 'b', col = 'red')
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # 
 # 1) Our estimates of the effects of duck stamps on band-recovery probability vary between the two model
-#    types (see the plot). Why? 
+#    types (see the plot). How and Why? 
 vioplot(m4a$sims.list$beta, m4b$sims.list$beta)
 #
 # 2) Why would we wish to estimate covariate effects as well as additional
-#    random temporal variation simultaneously?
+#    random temporal variation simultaneously? Try to run a model without the covariate (random-effects only)
+#    What happens to the estimate of the variance for f
 # 
 # 3) What is the effect of changing sample sizes on the precision of our estimates?
 #
