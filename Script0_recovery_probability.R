@@ -26,10 +26,9 @@ nT <- 1
 nR <- 1000
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# band-recovery probability (h)
+# band-recovery probability (f)
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 f <- plogis(rnorm(nT, -2.5, 0.5))
-
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # recover a proportion of individuals
@@ -105,6 +104,6 @@ points(f, pch = 19, type = 'b', col = 'red')
 #
 # 2. Do the same for ten years of releases.
 #
-# 3. Try a different beta prior (following slides). HOw strong would
+# 3. Try a different beta prior (following slides). How strong would
 # a prior have to be to affect inference (this is somewhat subjective)?
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
