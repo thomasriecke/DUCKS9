@@ -152,11 +152,7 @@ Sys.time()
 
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# A few disclaimers:
-#
-# We didn't constrain survivals and h fully effectively, 
-# i.e., in this model, it's possible for harvest to be 0.1 and winter survival to be 0.91!
-# for further reading about how to control for this type of issue see:
+# for further reading about risk vs. mortality probability, see:
 #
 # Ergon et al. (2018) Methods in Ecology and Evolution
 # Nater et al. (2020) Journal of Animal Ecology
