@@ -178,6 +178,7 @@ Sys.time()
 # plot estimates of hunting mortality against abundance (N) and
 # duck stamp sales (D)
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+greens <- colorRampPalette(c('lightgreen','darkgreen'))
 plot(m7$q50$kappa ~ N, ylab = expression(Hunting~mortality~probability~(kappa)),
      xlab = 'WBPHS N (millions)', pch = 21, bg = greens(n.years), cex = 2)
 plot(m7$q50$kappa ~ D, ylab = expression(Hunting~mortality~probability~(kappa)),
